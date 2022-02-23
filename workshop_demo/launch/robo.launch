@@ -1,0 +1,44 @@
+<launch>
+
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find workshop_demo)/urdf/robo_gazebo.urdf.xacro'"/>
+
+  <!-- Combine joint values -->
+  <!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/> -->
+
+  <!-- Show in Rviz   -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find workshop_demo)/config/config1.rviz"/>
+
+  <!-- send joint values -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui">
+    <param name="use_gui" value="True"/>
+  </node>
+
+    <arg name="paused" default="true"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="model" default="(find xacro)/xacro --inorder '$(find workshop_demo)/urdf/robo_gazebo.urdf.xacro' "/>
+  <arg name="world" default="$(find workshop_demo)/worlds/cafe.world"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="world_name" value="$(arg world)"/>
+  </include>
+
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find workshop_demo)/urdf/robo_gazebo.urdf.xacro' "/>
+
+     <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+        args="-z 1.0 -unpause -urdf -model robot -param robot_description" respawn="false" output="screen" />
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="30.0" />
+  </node>
+
+</launch>
+
+
