@@ -50,6 +50,8 @@ To run the teleop_twist_keyboard package and to control the movement of robot us
 ## Additional Links
 
 - [URDF online visualization website](https://mymodelrobot.appspot.com/5629499534213120)
+- [Gazebo plugins](http://gazebosim.org/tutorials?tut=ros_gzplugins)
+- [ROS Development Studio](https://www.theconstructsim.com/the-ros-development-studio-by-the-construct/)
 - [Few gazebo models](https://github.com/osrf/gazebo_models)
 - [Few pre-built gazebo worlds](https://drive.google.com/drive/folders/1kYbvD297EFjZHpP17M7sGKmLdQPEn7se)
 
